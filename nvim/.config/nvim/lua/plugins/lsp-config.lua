@@ -23,7 +23,14 @@ return {
 				capabilities = capabilities
 			})
 			lspconfig.pylsp.setup({
-				capabilities = capabilities
+				capabilities = capabilities,
+				settings = {
+					pyslp = {
+						plugins = {
+							rope_autoimport = { enable = true },
+						}
+					}
+				}
 			})
 		end
 	}
