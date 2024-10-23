@@ -1,0 +1,2 @@
+### Setup kitty theme
+kitty +kitten themes --reload-in=all Rosé Pine
