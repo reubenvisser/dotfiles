@@ -25,8 +25,9 @@ return {
 			lspconfig.pylsp.setup({
 				capabilities = capabilities,
 				settings = {
-					pyslp = {
+					pylsp = {
 						plugins = {
+							pycodestyle = { maxLineLength = 160 },
 							rope_autoimport = { enable = true },
 						}
 					}
