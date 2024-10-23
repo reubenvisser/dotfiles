@@ -4,6 +4,7 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set nowrap")
 
 vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.wo.relativenumber = true
 
@@ -14,3 +15,4 @@ vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.keymap.set("x", "<leader>p", [["_dP]])
