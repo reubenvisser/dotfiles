@@ -6,7 +6,13 @@ vim.cmd("set nowrap")
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
-vim.wo.relativenumber = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Move line up or down
+vim.keymap.set("n", "<M-j>", ":m +1<CR>")
+vim.keymap.set("n", "<M-k>", ":m -2<CR>")
 
 -- Navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
