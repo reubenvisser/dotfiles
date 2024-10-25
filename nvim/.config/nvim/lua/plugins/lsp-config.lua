@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pylsp" }
+				ensure_installed = { "lua_ls", "pyright" }
 			})
 		end
 	},
@@ -31,18 +31,10 @@ return {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
-			lspconfig.pylsp.setup({
+			lspconfig.pyright.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-
-				settings = {
-					pylsp = {
-						plugins = {
-							pycodestyle = { maxLineLength = 160 },
-							rope_autoimport = { enable = true },
-						}
-					}
-				}
+				filetypes ={ "python" },
 			})
 		end
 	}
