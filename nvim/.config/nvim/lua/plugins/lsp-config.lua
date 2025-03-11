@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright" }
+				ensure_installed = { "lua_ls", "pyright", "clangd" }
 			})
 		end
 	},
@@ -34,7 +34,12 @@ return {
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-				filetypes ={ "python" },
+				filetypes = { "python" },
+			})
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 			})
 		end
 	}
