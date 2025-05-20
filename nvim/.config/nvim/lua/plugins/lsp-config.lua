@@ -9,7 +9,9 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "clangd", "openscad_lsp" }
+				ensure_installed = { "lua_ls", "pyright", "clangd" },
+			automatic_installation = true,
+
 			})
 		end
 	},
@@ -41,11 +43,6 @@ return {
 				on_attach = on_attach,
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 			})
-			lspconfig.openscad_lsp.setup{
-				capabilities = on_attach(),
-				filetypes = { "openscad" },
-				cmd = { "openscad-lsp", "--stdio" }
-			}
 		end
 	}
 }
