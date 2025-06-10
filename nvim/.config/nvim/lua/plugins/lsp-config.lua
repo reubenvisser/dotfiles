@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "clangd" },
+				ensure_installed = { "lua_ls", "pyright", "ruff", "clangd", "bashls" },
 			automatic_installation = true,
 
 			})
@@ -36,12 +36,39 @@ return {
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-				filetypes = { "python" },
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { '*' },
+						},
+					},
+				},
+			})
+			lspconfig.ruff.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
 			})
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+			})
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					bashIde = {
+						indentation = {
+							character = " ", -- Use spaces
+							size = 4         -- Set to 4 spaces
+						}
+					}
+				}
 			})
 		end
 	}
