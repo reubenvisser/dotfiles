@@ -38,3 +38,23 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 -- Always centre after scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Format selected lines to a specific line length
+vim.api.nvim_create_user_command("FormatWidth", function(opts)
+  local width = tonumber(opts.args) or 80
+  -- Try using external fmt first
+  local has_fmt = vim.fn.executable("fmt") == 1
+  if has_fmt then
+    vim.cmd(string.format("'<,'>!fmt -w %d", width))
+  else
+    -- Fallback to Vim's built-in formatter
+    local old_tw = vim.bo.textwidth
+    vim.bo.textwidth = width
+    vim.cmd("'<,'>gq")
+    vim.bo.textwidth = old_tw
+  end
+end, {
+  range = true,
+  nargs = 1,
+  desc = "Format selected lines to given width (e.g., :'<,'>FormatWidth 72)",
+})
