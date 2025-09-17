@@ -58,3 +58,11 @@ end, {
   nargs = 1,
   desc = "Format selected lines to given width (e.g., :'<,'>FormatWidth 72)",
 })
+
+-- Jenkins file pickup
+vim.filetype.add({
+  pattern = {
+    ["Jenkinsfile.*"] = "groovy",
+    [".*%.jenkinsfile"] = "groovy",
+  },
+})
