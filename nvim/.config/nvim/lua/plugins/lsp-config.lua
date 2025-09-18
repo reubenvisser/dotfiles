@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "ruff", "clangd", "bashls" },
+				ensure_installed = { "lua_ls", "ruff", "clangd", "bashls" },
 			automatic_installation = true,
 
 			})
@@ -32,22 +32,6 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				settings = {
-					pyright = {
-						-- Using Ruff's import organizer
-						disableOrganizeImports = true,
-					},
-					python = {
-						analysis = {
-							-- Ignore all files for analysis to exclusively use Ruff for linting
-							ignore = { '*' },
-						},
-					},
-				},
 			})
 			lspconfig.ruff.setup({
 				capabilities = capabilities,
