@@ -13,6 +13,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- For obsidian plugin
+vim.opt.conceallevel = 1
+
 -- Enable spell checking
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
