@@ -2,16 +2,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-        -- Associate Jenkinsfile with groovy
-        vim.filetype.add({
-            filename = {
-                ["Jenkinsfile"] = "groovy",
-            },
-            pattern = {
-                ["Jenkinsfile.*"] = "groovy",
-            },
-        })
-
         -- Setup Tree-sitter
         local config = require("nvim-treesitter.configs")
         config.setup({
