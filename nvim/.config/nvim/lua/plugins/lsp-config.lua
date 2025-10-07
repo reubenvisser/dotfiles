@@ -9,9 +9,8 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff", "clangd", "bashls" },
-			automatic_installation = true,
-
+				ensure_installed = { "lua_ls", "ruff", "clangd", "bashls", "pyright" },
+                automatic_installation = true,
 			})
 		end
 	},
@@ -28,21 +27,28 @@ return {
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			end
 
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
-			lspconfig.ruff.setup({
+			vim.lsp.config("pyright", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
-			lspconfig.clangd.setup({
+			vim.lsp.config("ruff", {
+				capabilities = capabilities,
+                on_attach = function(client, bufnr)
+                    -- Optional: let Pyright handle hover so they don’t fight
+                    client.server_capabilities.hoverProvider = false
+                    on_attach(client, bufnr)
+                end,
+			})
+			vim.lsp.config("clangd", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 			})
-			lspconfig.bashls.setup({
+			vim.lsp.config("bashls", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
