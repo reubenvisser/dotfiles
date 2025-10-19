@@ -1,3 +1,4 @@
-font-family = "JetBrainsMono"
+font-family = "JetBrainsMono NFM SemiBold"
 theme = "Rose Pine"
 window-theme = ghostty
+mouse-scroll-multiplier = 0.25
