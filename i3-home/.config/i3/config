@@ -25,10 +25,10 @@ exec --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id xset s off -dpms
 
 # lock button
-bindsym Mod4+l exec i3lock
+bindsym Mod1+l exec i3lock
 
 # change volume or toggle mute
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

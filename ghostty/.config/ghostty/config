@@ -2,3 +2,4 @@ font-family = "JetBrainsMono NFM SemiBold"
 theme = "Gruvbox Dark Hard"
 window-theme = ghostty
 mouse-scroll-multiplier = 0.25
+app-notifications = false
