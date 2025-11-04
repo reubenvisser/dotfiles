@@ -6,7 +6,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
+			-- "rafamadriz/friendly-snippets",
 		},
 	},
 	{
@@ -17,6 +17,7 @@ return {
 			local luasnip = require('luasnip')
 
 			require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/lua/snippets/" } })
 
 			cmp.setup({
 				snippet = {
@@ -55,7 +56,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
-					-- { name = "luasnip" }
+					{ name = "luasnip" }
 				}, {
 					{ name = "buffer" },
 				}),
