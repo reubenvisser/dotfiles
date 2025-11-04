@@ -18,8 +18,8 @@ exec_always --no-startup-id xrandr \
 exec_always feh --bg-fill /usr/share/backgrounds/Monument_valley_by_orbitelambda.jpg
 
 # Esc caps swap
-exec --no-stastup-id setxkbmap -option 
-exec --no-startup-id setxkbmap -option caps:swapescape
+# exec_always setxkbmap -option 
+# exec_always setxkbmap -option caps:swapescape
 
 # no screen timout
 exec --no-startup-id xset s off -dpms
@@ -28,7 +28,7 @@ exec --no-startup-id xset s off -dpms
 set $mod Mod4
 
 # lock button
-bindsym Mod1+l exec i3lock
+bindsym Mod1+l exec i3lock -c 000000
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
