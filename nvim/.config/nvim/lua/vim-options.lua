@@ -14,7 +14,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- For obsidian plugin
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 
 -- Enable spell checking
 vim.opt.spell = true
