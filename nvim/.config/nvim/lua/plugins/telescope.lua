@@ -20,7 +20,10 @@ return 	{
 						require("telescope.themes").get_dropdown {
 						}
 					}
-				}
+				},
+                defaults = {
+                    path_display = { "truncate" }, 
+                },
 			})
 			require("telescope").load_extension("ui-select")
 		end

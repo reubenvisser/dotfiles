@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff", "clangd", "bashls", "pyright" },
+				ensure_installed = { "lua_ls", "ruff", "clangd", "bashls", "pyright", "ts_ls" },
                 automatic_installation = true,
 			})
 		end
@@ -60,6 +60,14 @@ return {
 					}
 				}
 			})
+            vim.lsp.config("ts_ls", {
+                capabilities = capabilities,
+                on_attach = on_attach(),
+                settings = {
+                    typescript = { preferences = { preferGoToSourceDefinition = true } },
+                    javascript = { preferences = { preferGoToSourceDefinition = true } },
+                },
+            })
 		end
 	}
 }

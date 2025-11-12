@@ -4,6 +4,16 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set nowrap")
 vim.cmd("set expandtab")
 
+-- maybe one day i'll find a better way to do this
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.shiftwidth = 2
+  end,
+})
+
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>pv",  "<cmd>Oil<CR>")
@@ -13,12 +23,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- For obsidian plugin
-vim.opt.conceallevel = 1
-
 -- Enable spell checking
 vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { 'en_au' }
 
 -- Move line up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

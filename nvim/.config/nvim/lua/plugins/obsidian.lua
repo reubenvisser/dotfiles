@@ -25,5 +25,6 @@ return {
         return suffix
     end,
     legacy_commands = false,
+    ui = { enable = false },
   },
 }

@@ -1,8 +1,4 @@
-local luasnip = require("luasnip")
-local s = luasnip.snippet
-local t = luasnip.text_node
-luasnip.add_snippets("all", {
-  s("hi", {
-    t("hello, world"),
-  }),
-})
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
