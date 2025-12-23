@@ -40,6 +40,7 @@ return {
                 on_attach = function(client, bufnr)
                     -- Optional: let Pyright handle hover so they don’t fight
                     client.server_capabilities.hoverProvider = false
+                    client.server_capabilities.definitionProvider = false
                     on_attach(client, bufnr)
                 end,
 			})
