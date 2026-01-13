@@ -1,10 +1,4 @@
 # dotfiles
 
-## Pre-requisites
+Personal collection of dotfiles managed with GNU Stow.
 
-- NerdFont for lualine icons.
-- Check None-ls for formatters that need to be install
-- Ripgrep for search
-- zfrc
-
-PS1='\w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] $\[\033[00m\] '
