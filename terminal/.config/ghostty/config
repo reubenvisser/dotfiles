@@ -4,3 +4,4 @@ window-theme = ghostty
 mouse-scroll-multiplier = 0.25
 app-notifications = false
 font-feature = -calt
+
