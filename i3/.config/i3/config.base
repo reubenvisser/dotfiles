@@ -16,7 +16,7 @@ exec_always --no-startup-id setxkbmap -option && setxkbmap -option caps:swapesca
 exec --no-startup-id xset s off -dpms
 
 # lock button
-bindsym Mod1+l exec i3lock
+bindsym Mod1+l exec --no-startup-id ~/.config/i3/lock.sh
 
 # change volume or toggle mute
 set $mod Mod4
@@ -204,7 +204,7 @@ set $darkgray #1d2021
 set $white    #fbf1c7
 
 
-exec_always feh --bg-fill ./Driving_Home_The_Flock.png
+exec_always feh --bg-fill ~/.config/i3/Driving_Home_The_Flock.png
 
 # class                 border    backgr.   text      indicator child_border
 client.focused          $blue     $blue     $darkgray $purple   $blue
