@@ -9,11 +9,6 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# Display Setup (home)
-exec_always --no-startup-id xrandr \
-  --output DisplayPort-1 --primary --mode 2560x1440 --rate 144 --pos 0x0 \
-  --output DisplayPort-0 --mode 1920x1080 --rate 60 --rotate right --pos 2560x-240 \
-  --output HDMI-A-0 --mode 1920x1080 --rate 75 --pos -1920x0
 
 # Esc caps swap
 exec_always --no-startup-id setxkbmap -option && setxkbmap -option caps:swapescape
@@ -26,6 +21,9 @@ bindsym Mod1+l exec i3lock
 
 # change volume or toggle mute
 set $mod Mod4
+
+# screenshot
+bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
