@@ -19,6 +19,7 @@ init() {
     # Wait for device to be ready
     sleep 1
     xsetwacom set "$STYLUS" MapToOutput "${MONITORS[$DEFAULT]}"
+    xsetwacom set "$STYLUS" Threshold 550
 
     xsetwacom set "$PAD" Button 1 "key super F1"
     xsetwacom set "$PAD" Button 2 "key super F2"
