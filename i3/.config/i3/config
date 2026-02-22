@@ -1,2 +1,2 @@
 include ~/.config/i3/config.base
-include ~/.config/i3/config.home
+include ~/.config/i3/config.work

@@ -15,10 +15,22 @@ source "$CONFIG"
 STYLUS="Wacom Intuos S Pen stylus"
 PAD="Wacom Intuos S Pad pad"
 
+# Resolve monitor name to geometry string for xsetwacom compatibility
+resolve_output() {
+    local name="$1"
+    local geom
+    geom=$(xrandr | grep "^${name} connected" | grep -oP '\d+x\d+\+\d+\+\d+')
+    if [ -n "$geom" ]; then
+        echo "$geom"
+    else
+        echo "$name"
+    fi
+}
+
 init() {
     # Wait for device to be ready
     sleep 1
-    xsetwacom set "$STYLUS" MapToOutput "${MONITORS[$DEFAULT]}"
+    xsetwacom set "$STYLUS" MapToOutput "$(resolve_output "${MONITORS[$DEFAULT]}")"
     xsetwacom set "$STYLUS" Threshold 550
 
     xsetwacom set "$PAD" Button 1 "key super F1"
@@ -28,7 +40,7 @@ init() {
 }
 
 swap_to() {
-    xsetwacom set "$STYLUS" MapToOutput "${MONITORS[$1]}"
+    xsetwacom set "$STYLUS" MapToOutput "$(resolve_output "${MONITORS[$1]}")"
 }
 
 
