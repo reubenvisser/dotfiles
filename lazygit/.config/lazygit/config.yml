@@ -1,0 +1,34 @@
+keybinding:
+  commits:
+    moveDownCommit: "<c-n>"
+    moveUpCommit: "<c-p>"
+customCommands:
+  - key: "o"
+    context: "localBranches"
+    prompts:
+      - type: "input"
+        title: "PR title"
+        key: "Title"
+    command: "gh pr create --fill --title '{{.Form.Title}}' --body ''"
+    loadingText: "Creating PR..."
+  - key: "O"
+    context: "localBranches"
+    command: "gh pr view --web"
+    loadingText: "Opening PR in browser..."
+  - key: "c"
+    context: "localBranches"
+    command: "gh pr checkout {{.SelectedLocalBranch.Name}}"
+    loadingText: "Checking out PR..."
+  - key: "m"
+    context: "localBranches"
+    command: "gh pr merge --merge --delete-branch"
+    loadingText: "Merging PR..."
+    prompts:
+      - type: "confirm"
+        title: "Merge PR?"
+        body: "Are you sure you want to merge and delete the branch?"
+  - key: "V"
+    context: "global"
+    command: "gh pr list"
+    loadingText: "Fetching PRs..."
+    output: popup
