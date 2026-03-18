@@ -43,7 +43,7 @@ vim.keymap.set("n", "<leader>c", "<cmd>lua require'codeium'.toggle()<CR>", { nor
 -- Jenkins file pickup
 vim.filetype.add({
   pattern = {
-    ["Jenkinsfile.*"] = "groovy",
+    [".*Jenkinsfile.*"] = "groovy",
     [".*%.jenkinsfile"] = "groovy",
   },
 })
