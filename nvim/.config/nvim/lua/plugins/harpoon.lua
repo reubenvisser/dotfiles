@@ -7,7 +7,14 @@ return {
 		local harpoon = require("harpoon")
 
 		-- REQUIRED
-		harpoon:setup()
+		harpoon:setup({
+			settings = {
+				key = function()
+					local branch = vim.fn.system("git branch --show-current"):gsub("\n", "")
+					return vim.uv.cwd() .. "-" .. branch
+				end,
+			},
+		})
 		-- REQUIRED
 
 		vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
