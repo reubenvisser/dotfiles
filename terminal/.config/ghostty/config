@@ -1,7 +1,7 @@
 font-family = "JetBrainsMono NFM SemiBold"
 theme = "Gruvbox Dark Hard"
 window-theme = ghostty
-mouse-scroll-multiplier = 0.25
+mouse-scroll-multiplier = 2
 app-notifications = false
 font-feature = -calt
 
