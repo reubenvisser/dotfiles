@@ -33,7 +33,8 @@ init() {
     # xsetwacom set "$STYLUS" MapToOutput "$(resolve_output "${MONITORS[$DEFAULT]}")"
     xsetwacom set "$STYLUS" Threshold 550
     xsetwacom set "$STYLUS" Button 2 "pan"
-    xsetwacom --set "Wacom Intuos S Pen stylus" "PanScrollThreshold" 300
+    xsetwacom set "$STYLUS" Button 3 3
+    xsetwacom --set "Wacom Intuos S Pen stylus" "PanScrollThreshold" 200
 
     xsetwacom set "$PAD" Button 1 "key super F1"
     xsetwacom set "$PAD" Button 2 "key super F2"
