@@ -63,6 +63,7 @@ vim.pack.add({
     "https://github.com/hrsh7th/cmp-nvim-lsp",
     "https://github.com/L3MON4D3/LuaSnip",
     "https://github.com/saadparwaiz1/cmp_luasnip",
+    "https://github.com/obsidian-nvim/obsidian.nvim",
 })
 
 -- Theme
@@ -118,7 +119,9 @@ vim.keymap.set("n", "<leader>gl", ":tab	Git log -10 -- %<CR>", {})
 -- Syntax highlighting
 vim.api.nvim_create_autocmd('FileType', {
     callback = function()
-        local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+        local ft = vim.bo.filetype
+        if ft == 'oil' or ft == 'harpoon' then return end
+        local lang = vim.treesitter.language.get_lang(ft)
         if lang then
             if not pcall(vim.treesitter.language.inspect, lang) then
                 require('nvim-treesitter').install({ lang })
@@ -129,7 +132,27 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
--- LSP 
+-- Obsidian
+require("obsidian").setup({
+    workspaces = {
+        { name = "vault", path = "~/work/obsidian" },
+    },
+    note_id_func = function(title)
+        local suffix = ""
+        if title ~= nil then
+            suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        else
+            for _ = 1, 4 do
+                suffix = suffix .. string.char(math.random(65, 90))
+            end
+        end
+        return suffix
+    end,
+    legacy_commands = false,
+    ui = { enable = false },
+})
+
+-- LSP
 require("mason").setup({ })
 require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "ruff", "clangd", "bashls", "pyright", "ts_ls" },
