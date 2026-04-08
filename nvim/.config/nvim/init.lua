@@ -74,7 +74,10 @@ vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")
 
 -- File navigation
-require("oil").setup({ 
+require("oil").setup({
+    view_options = {
+        show_hidden = true,
+    },
     keymaps = {
         ["<C-p>"] = false,
         ["gp"] = "actions.preview",
