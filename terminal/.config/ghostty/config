@@ -1,5 +1,5 @@
 font-family = "JetBrainsMono NFM SemiBold"
-theme = "Gruvbox Dark Hard"
+theme = "Gruvbox Dark"
 window-theme = ghostty
 mouse-scroll-multiplier = 2
 app-notifications = false
