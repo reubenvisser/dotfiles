@@ -78,6 +78,9 @@ require("oil").setup({
     view_options = {
         show_hidden = true,
     },
+    float = {
+        border = "rounded",
+    },
     keymaps = {
         ["<C-p>"] = false,
         ["gp"] = "actions.preview",
