@@ -59,7 +59,10 @@ vim.pack.add({
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
     "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/hrsh7th/nvim-cmp",
+    "https://github.com/hrsh7th/cmp-nvim-lsp",
     "https://github.com/L3MON4D3/LuaSnip",
+    "https://github.com/saadparwaiz1/cmp_luasnip",
     "https://github.com/obsidian-nvim/obsidian.nvim",
 })
 
@@ -162,31 +165,34 @@ require("mason-lspconfig").setup({
     automatic_installation = true,
 })
 
-vim.o.autocomplete = true
-vim.o.pumborder = "rounded"
-vim.o.pummaxwidth = 40
-vim.o.completeopt = "menu,menuone,noselect,nearest"
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
       local opts = { buffer = ev.buf }
+      -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+      -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
       vim.keymap.set("n", "grr", require('telescope.builtin').lsp_references, opts)
       vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
   end,
 })
 
-vim.lsp.config("lua_ls", {})
-vim.lsp.config("pyright", {})
+vim.lsp.config("lua_ls", { capabilities = capabilities })
+vim.lsp.config("pyright", { capabilities = capabilities })
 vim.lsp.config("ruff", {
+    capabilities = capabilities,
     on_attach = function(client)
         client.server_capabilities.hoverProvider = false
         client.server_capabilities.definitionProvider = false
     end,
 })
 vim.lsp.config("clangd", {
+    capabilities = capabilities,
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 })
 vim.lsp.config("bashls", {
+    capabilities = capabilities,
     settings = {
         bashIde = {
             indentation = { character = " ", size = 4 }
@@ -194,15 +200,61 @@ vim.lsp.config("bashls", {
     }
 })
 vim.lsp.config("ts_ls", {
+    capabilities = capabilities,
     settings = {
         typescript = { preferences = { preferGoToSourceDefinition = true } },
         javascript = { preferences = { preferGoToSourceDefinition = true } },
     },
 })
 
--- Snippets
+-- Completions
+local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets/" } })
 luasnip.setup({ update_events = "TextChanged,TextChangedI" })
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    window = {
+        completion = cmp.config.window.bordered({ border = "rounded" }),
+        documentation = cmp.config.window.bordered({ border = "rounded" }),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+    }),
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+    }, {
+        { name = "buffer" },
+    }),
+})
+
