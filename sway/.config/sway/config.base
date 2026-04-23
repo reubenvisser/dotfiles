@@ -1,0 +1,8 @@
+# sway config file
+# https://github.com/swaywm/sway/wiki
+
+set $mod Mod4
+font pango:monospace 8
+
+# Import config modules
+include ~/.config/sway/config.d/*.conf

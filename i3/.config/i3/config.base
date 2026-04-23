@@ -1,9 +1,0 @@
-# i3 config file (v4)
-# https://i3wm.org/docs/userguide.html
-
-set $mod Mod4
-font pango:monospace 8
-
-# Import config modules
-include ~/.config/i3/config.d/*.conf
-

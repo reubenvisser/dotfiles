@@ -1,0 +1,21 @@
+#!/bin/bash
+swaylock \
+  --color=282828 \
+  --inside-color=28282800 \
+  --inside-ver-color=458588ff \
+  --inside-wrong-color=cc241dff \
+  --ring-color=ebdbb2ff \
+  --ring-ver-color=458588ff \
+  --ring-wrong-color=cc241dff \
+  --line-color=28282800 \
+  --key-hl-color=b8bb26ff \
+  --bs-hl-color=fb4934ff \
+  --separator-color=28282800 \
+  --text-color=ebdbb2ff \
+  --text-ver-color=ebdbb2ff \
+  --text-wrong-color=fb4934ff \
+  --text-caps-lock-color=fabd2fff \
+  --indicator-radius=120 \
+  --indicator-thickness=8 \
+  --ignore-empty-password \
+  --show-failed-attempts
