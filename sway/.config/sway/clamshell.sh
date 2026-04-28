@@ -3,7 +3,7 @@
 # on a config reload we re-apply the current lid state (sway otherwise resets
 # all outputs to enabled, which breaks clamshell mode).
 
-LAPTOP_OUTPUT="eDP-1"
+LAPTOP_OUTPUT="eDP-2"
 LID_STATE_FILE="/proc/acpi/button/lid/LID/state"
 
 read -r LS < "$LID_STATE_FILE"
