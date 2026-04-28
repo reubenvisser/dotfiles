@@ -108,6 +108,11 @@ vim.keymap.set("n", "<leader>l", function() harpoon:list():select(4) end)
 require("telescope").setup({
     defaults = {
         path_display = { "truncate" },
+        vimgrep_arguments = {
+            "rg", "--color=never", "--no-heading", "--with-filename",
+            "--line-number", "--column", "--smart-case",
+            "--hidden", "--glob=!.git/",
+        },
     },
 })
 local builtin = require('telescope.builtin')
@@ -227,6 +232,7 @@ cmp.setup({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
